@@ -13,7 +13,6 @@ DOMAIN = "data.cdc.gov"
 CATALOG_URL = "https://api.us.socrata.com/api/catalog/v1"
 PAGE_LIMIT = 100
 
-
 print("Loading catalog list...")
 raw_items = []
 offset = 0
@@ -130,3 +129,9 @@ for row_count, dataset_id, item in top3:
     print(f"Link: {link}")
     print(f"Size: {row_count} rows")
     print(f"Description: {description}")
+
+
+print('\n\nMain datasets providers:')
+attributions = Counter(item.get("resource", {}).get("attribution") for item in raw_items)
+for source, cnt in attributions.most_common(10):
+    print(source, cnt)
