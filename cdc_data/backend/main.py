@@ -35,8 +35,7 @@ log = logging.getLogger("disease-radar")
 # --------------------------------------------------------------------------
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
-CSV_PATH = os.path.join(DATA_DIR, "NNDSS_Weekly_Data_20260914.csv")
-EXCLUDE_LABEL = "COVID-19-associated pediatric mortality"
+CSV_PATH = os.path.join(DATA_DIR, "NNDSS_Weekly_Data_20260914_trimmed.csv")
 TOP_N_BOOTSTRAP = 40  # how many top-volume diseases get state-level detail bundled up-front
 
 STATE_LIST = [
@@ -102,7 +101,7 @@ def normalize_label(raw: str) -> str:
     cleaned = re.sub(r"\s+", " ", raw.strip())
     return LABEL_ALIASES.get(cleaned, cleaned)
 
-YEARS = [2022, 2023, 2024, 2025, 2026]
+YEARS = [2024, 2025, 2026]
 NWEEKS = 53
 
 
@@ -231,7 +230,6 @@ def load_dataset():
     for chunk in pd.read_csv(CSV_PATH, usecols=usecols, chunksize=500_000, dtype=str,
                               keep_default_na=False, na_values=[""]):
         chunk = chunk.assign(Label=chunk["Label"].map(normalize_label))
-        chunk = chunk[chunk["Label"] != EXCLUDE_LABEL]
         ak = chunk["Reporting Area"].str.upper().str.replace(r"[^A-Z]", "", regex=True)
         chunk = chunk.assign(area_c=ak.map(CANON_MAP))
         chunk = chunk[chunk["area_c"].notna()]
