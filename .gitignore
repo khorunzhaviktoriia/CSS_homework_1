@@ -1,0 +1,40 @@
+# Only these two project folders should be committed from repo root
+/*
+!/.gitignore
+!/cdc_data/
+!/world_bank_data_catalog/
+
+# Node
+**/node_modules/
+**/dist/
+**/.vite/
+**/.cache/
+
+# Python
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+
+# IDE / notebooks
+**/.idea/
+**/.vscode/
+**/.ipynb_checkpoints/
+
+# Secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# OS / logs
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+
+# Raw large CDC dataset - GitHub rejects >100 MiB
+/cdc_data/backend/data/*.csv
+
+# Archives / temporary files
+*.zip
+*.tmp
