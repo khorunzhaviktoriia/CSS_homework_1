@@ -30,13 +30,36 @@ class WDIStore:
 
     def load(self):
         t0 = time.time()
-        dtypes = {"Country Name": "category", "Country Code": "category",
-                  "Indicator Name": "string", "Indicator Code": "category"}
-        df = pd.read_csv(CSV_PATH, dtype=dtypes)
-        # downcast year columns to float32 to roughly halve memory use
-        for c in YEAR_COLS:
-            if c in df.columns:
-                df[c] = pd.to_numeric(df[c], errors="coerce").astype("float32")
+        dtypes = {
+            "Country Name": "string",
+            "Country Code": "string",
+            "Indicator Name": "string",
+            "Indicator Code": "string",
+            **{c: "float32" for c in YEAR_COLS},
+        }
+
+        parts = []
+        before = 0
+
+        for chunk in pd.read_csv(
+                CSV_PATH,
+                dtype=dtypes,
+                chunksize=50_000
+        ):
+            before += len(chunk)
+
+            chunk = chunk.dropna(
+                subset=YEAR_COLS,
+                how="all"
+            )
+
+            parts.append(chunk)
+
+        df = pd.concat(parts, ignore_index=True)
+
+        for c in ["Country Name", "Country Code", "Indicator Code"]:
+            df[c] = df[c].astype("category")
+
         # Preprocessing: drop (country, indicator) rows with literally zero
         # observations across all 66 years. This does NOT remove any real
         # observation (every value kept is exactly what was in the source
@@ -45,8 +68,6 @@ class WDIStore:
         # Genuine partial gaps (a country missing some but not all years)
         # are left untouched — WDI's missing values mean "not observed",
         # never 0, and this project never fills or interpolates them.
-        before = len(df)
-        df = df.dropna(subset=YEAR_COLS, how="all").reset_index(drop=True)
         dropped = before - len(df)
         self.df = df
         self.rows_dropped_empty = dropped
