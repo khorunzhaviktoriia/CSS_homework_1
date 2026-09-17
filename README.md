@@ -5,11 +5,6 @@ This repository contains two full-stack data dashboards:
 - **Disease Radar** - interactive exploration of U.S. notifiable disease surveillance data.
 - **World Bank Data Explorer** - exploration and comparison of World Development Indicators.
 
-## Live applications
-
-- Disease Radar: https://disease-radar-web-production.up.railway.app
-- World Bank Data Explorer: https://world-bank-web-production.up.railway.app
-
 ## Project structure
 
 ```text

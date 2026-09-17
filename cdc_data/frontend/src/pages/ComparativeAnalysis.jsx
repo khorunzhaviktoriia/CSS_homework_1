@@ -221,7 +221,7 @@ export default function ComparativeAnalysisPage() {
               <button className={`pill-btn ${waterfallMode === "years" ? "active" : ""}`} onClick={() => setWaterfallMode("years")}>{f.year} vs {f.year - 1}</button>
             </div>
           } />
-          <div className="text-faint" style={{ fontSize: 11, marginBottom: 8 }}>Cumulative through week {f.week} of each year — so a partial current year is never compared to a full historical one.</div>
+          <div className="text-faint" style={{ fontSize: 11, marginBottom: 8 }}>Each year is compared through the same week (week{f.week})</div>
           <WaterfallChart mode={waterfallMode} stateA={stateA} stateB={stateB} year={f.year} week={f.week} />
         </Glass>
       </div>

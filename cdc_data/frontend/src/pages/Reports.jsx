@@ -54,7 +54,7 @@ export default function ReportsPage() {
 
   return (
     <div className="page-wrap">
-      <div className="hero"><h1>Reports & insights</h1><p>A shareable snapshot of national activity, emerging signals, and data quality for week {f.week}, {f.year}.</p></div>
+      <div className="hero"><h1>Reports & insights</h1><p>A snapshot of national activity, emerging signals, and data quality for week {f.week}, {f.year}.</p></div>
 
       <div className="grid grid-kpi" style={{ marginBottom: 20 }}>
         <Glass className="kpi-card">
@@ -69,7 +69,7 @@ export default function ReportsPage() {
 
       <div className="grid grid-2" style={{ marginBottom: 20, alignItems: "start" }}>
         <Glass hover={false}>
-          <SectionHeading  title="Top emerging diseases" />
+          <SectionHeading  title="Largest week-over-week increases" />
           {emerging.length === 0 ? <EmptyNote>No diseases show positive growth this week.</EmptyNote> : emerging.map((g, i) => (
             <div className="rank-row" key={g.label} style={{ gridTemplateColumns: "22px 1fr 90px" }}>
               <span className="rank-num">{String(i + 1).padStart(2, "0")}</span>
@@ -81,7 +81,7 @@ export default function ReportsPage() {
         </Glass>
 
         <Glass hover={false}>
-          <SectionHeading eyebrow="Automated Insights" title="Data-driven narrative cards" action={<Sparkles size={15} color="var(--purple)" />} />
+          <SectionHeading eyebrow="Automated Insights" title="Summary insights" action={<Sparkles size={15} color="var(--purple)" />} />
           {insights.length === 0 ? <EmptyNote>No notable signals this week.</EmptyNote> : insights.map((ins, i) => (
             <div className="alert-item" key={i}><TierDot tier={ins.tier === "info" ? "unknown" : ins.tier} /><div className="alert-text">{ins.text}</div></div>
           ))}
@@ -89,7 +89,7 @@ export default function ReportsPage() {
       </div>
 
       <Glass hover={false} style={{ marginBottom: 20 }}>
-        <SectionHeading eyebrow="Timeline" title={`High anomaly crossings, ${f.year}`} />
+        <SectionHeading eyebrow="Timeline" title={`Weeks when national reported cases were unusually high relative to the previous 8 weeks. ${f.year}`} />
         {outbreakTimeline.length === 0 ? <EmptyNote>No high-anomaly weeks (robust score &gt; 3) detected this year among tracked diseases.</EmptyNote> : (
           <div style={{ position: "relative", paddingLeft: 18 }}>
             <div style={{ position: "absolute", left: 4, top: 4, bottom: 4, width: 2, background: "linear-gradient(180deg, var(--coral), transparent)" }} />

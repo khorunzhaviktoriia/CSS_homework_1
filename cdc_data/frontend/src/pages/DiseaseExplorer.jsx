@@ -276,11 +276,11 @@ export default function DiseaseExplorerPage() {
               <div className="text-faint" style={{ fontSize: 11 }}>{!detailKnown ? "loading" : hasDetail ? `of ${MAP_STATES.length} tracked` : "no state detail reported"}</div>
             </Glass>
             <Glass className="tight">
-              <div className="kpi-label">Trend momentum</div>
+              <div className="kpi-label">Recent 4-week change</div>
               <div className="kpi-value" style={{ fontSize: 22, margin: "6px 0" }}>
                 {momentum == null ? "—" : momentum === Infinity ? "New" : `${momentum > 0 ? "+" : ""}${momentum.toFixed(0)}%`}
               </div>
-              <div className="text-faint" style={{ fontSize: 11 }}>4-wk avg vs prior 4-wk avg</div>
+              <div className="text-faint" style={{ fontSize: 11 }}>Latest 4-week average vs previous 4 weeks</div>
             </Glass>
             <Glass className="tight">
               <div className="kpi-label">Historical trend</div>

@@ -151,7 +151,7 @@ export default function OverviewPage() {
           <div className="kpi-bottom">
             <span className="text-faint" style={{ fontSize: 12 }}>{elevatedCount} elevated · {outbreakPairs.length} tracked pairs</span>
           </div>
-          <div className="kpi-sub">Disease × state · robust anomaly score &gt; 3</div>
+          <div className="kpi-sub">Unusual increases vs the previous 8 weeks</div>
         </Glass>
 
         <Glass className="kpi-card">
@@ -165,7 +165,7 @@ export default function OverviewPage() {
           <div className="kpi-bottom">
             {topGrowth?.newActivity ? <span className="trend-pill trend-up">New activity</span> : <Trend value={topGrowth?.pct} />}
           </div>
-          <div className="kpi-sub">By week-over-week Growth Index</div>
+          <div className="kpi-sub">Compared with the previous week</div>
         </Glass>
 
         <Glass className="kpi-card">
@@ -179,7 +179,7 @@ export default function OverviewPage() {
           <div className="kpi-bottom">
             <span className="text-dim" style={{ fontSize: 12.5 }}>{topIncidenceState ? `${topIncidenceState.incidence.toFixed(2)} /100k` : "—"}</span>
           </div>
-          <div className="kpi-sub">{shortLabel(f.disease)} · per-capita, Census reference</div>
+          <div className="kpi-sub">{shortLabel(f.disease)} · per 100k residents</div>
         </Glass>
       </div>
 

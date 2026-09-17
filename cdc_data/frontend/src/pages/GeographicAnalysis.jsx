@@ -41,7 +41,6 @@ export default function GeographicAnalysisPage() {
     <div className="page-wrap">
       <div className="hero">
         <h1>Geographic analysis</h1>
-        <p>State-level detail is fetched from the backend on demand for whichever disease is selected — pick anything from search, not just the bootstrap's top {TOP_DISEASES.length}.</p>
       </div>
 
       <div className="grid grid-2" style={{ marginBottom: 20, alignItems: "start" }}>

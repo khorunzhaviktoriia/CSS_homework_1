@@ -208,7 +208,7 @@ export default function TrendAnalysisPage() {
               </LineChart>
             </ResponsiveContainer>
           )}
-          <div className="text-faint" style={{ fontSize: 11.5 }}>{peakData.peaks.length} peak{peakData.peaks.length !== 1 ? "s" : ""} detected on the 3-week smoothed series, minimum prominence ~8% of yearly max.</div>
+          <div className="text-faint" style={{ fontSize: 11.5 }}>{peakData.peaks.length} peak{peakData.peaks.length !== 1 ? "s" : ""} detected after 3-week smoothing, with a minimum prominence of about 8% of the yearly maximum.</div>
         </Glass>
       </div>
 
