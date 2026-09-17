@@ -93,7 +93,7 @@ npm install
 npm run dev
 ```
 
-The frontend uses `http://localhost:8000` as the default local API URL.
+The frontend uses `http://localhost:5173` as the default local API URL.
 
 ---
 
@@ -125,4 +125,4 @@ npm install
 npm run dev
 ```
 
-The frontend uses `http://localhost:8000` as the default local API URL.
+The frontend uses `http://localhost:5173` as the default local API URL.
